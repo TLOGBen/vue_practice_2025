@@ -1,38 +1,50 @@
-import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
-
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: [
-    '@pinia/nuxt',
-    'pinia-plugin-persistedstate',
-    '@nuxtjs/i18n',
-    '@vueuse/nuxt',
-    '@formkit/auto-animate',
-    '@nuxt/test-utils',
-    '@nuxt/image',
-    '@nuxt/icon',
-    '@nuxt/content',
-    '@nuxt/eslint',
-    (_options, nuxt) => {
-      nuxt.hooks.hook('vite:extendConfig', (config) => {
-        // @ts-expect-error
-        config.plugins.push(vuetify({ 
-          autoImport: true,
-          styles: {
-            configFile: '/asserts/scss/override/components.scss',
-          },
-       }))
-      })
-    },
-  ],
+
+  future: {
+    compatibilityVersion: 4,
+  },
+
+  ssr: true,
+
+  // when enabling ssr option you need to disable inlineStyles and maybe devLogs
+  features: {
+    inlineStyles: false,
+    devLogs: false,
+  },
+
   build: {
     transpile: ['vuetify'],
   },
+
   vite: {
-    vue: {
-      template: {
-        transformAssetUrls,
+    ssr: {
+      noExternal: ['vuetify'],
+    },
+  },
+
+  css: [],
+  modules: ['@nuxt/fonts', 'vuetify-nuxt-module', '@nuxt/eslint', '@pinia/nuxt', 'pinia-plugin-persistedstate'],
+
+  vuetify: {
+    moduleOptions: {
+      // check https://nuxt.vuetifyjs.com/guide/server-side-rendering.html
+      ssrClientHints: {
+        reloadOnFirstRequest: false,
+        viewportSize: true,
+        prefersColorScheme: false,
+
+        prefersColorSchemeOptions: {
+          useBrowserThemeOnly: false,
+        },
+      },
+
+      // /* If customizing sass global variables ($utilities, $reset, $color-pack, $body-font-family, etc) */
+      // disableVuetifyStyles: true,
+      styles: {
+        configFile: 'assets/style/override/settings.scss',
       },
     },
   },
