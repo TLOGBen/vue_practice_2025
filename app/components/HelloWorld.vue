@@ -23,7 +23,7 @@
           <v-card
             class="py-4"
             color="on-surface"
-            image="https://cdn.vuetifyjs.com/docs/images/one/create/feature.png"
+            image="~/assets/img/feature.png"
             prepend-icon="mdi-rocket-launch-outline"
             rounded="lg"
             variant="outlined"
