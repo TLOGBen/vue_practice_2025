@@ -11,17 +11,17 @@ export const loginFormVin = z.object({
     message: '密碼至少 8 個字元',
   }),
 })
+
 export default defineEventHandler(async (event) => {
-  await clearUserSession(event)
   const { username, password } = await readValidatedBody(event, loginFormVin.parse)
   if (username === 'admin@admin.com' && password === '12345678') {
     // set the user session in the cookie
     // this server util is auto-imported by the auth-utils module
-    await setUserSession(event, {
-      user: {
-        name: 'John Doe',
-      },
-    })
+    // await setUserSession(event, {
+    //   user: {
+    //     name: 'John Doe',
+    //   },
+    // })
     return {
       success: true, message: '登入成功',
     }

@@ -43,6 +43,13 @@ export default defineNuxtConfig({
   // CSS 配置
   css: [],
 
+  // auto import 配置
+  imports: {
+    dirs: [
+      '~/types',
+    ],
+  },
+
   // 模塊配置
   modules: [
     '@nuxt/fonts',
@@ -52,13 +59,13 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@formkit/auto-animate',
     '@unocss/nuxt',
-    'nuxt-auth-utils',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate',
     '@nuxtjs/i18n',
     '@nuxt/test-utils',
     '@nuxt/icon',
     'nuxt-security',
+    '@sidebase/nuxt-auth',
   ],
 
   // 應用程序配置
@@ -67,6 +74,7 @@ export default defineNuxtConfig({
       weburl: process.env.ENV_WEB_BASE_URL,
       apiurl: process.env.ENV_API_BASE_URL,
     },
+    loginUrl: '/login',
   },
 
   // Vuetify 配置
@@ -87,6 +95,19 @@ export default defineNuxtConfig({
       styles: {
         configFile: 'assets/style/override/settings.scss',
       },
+    },
+  },
+
+  // auth 配置
+  auth: {
+    provider: {
+      type: 'local',
+    },
+  },
+
+  eslint: {
+    config: {
+      stylistic: true,
     },
   },
 })
