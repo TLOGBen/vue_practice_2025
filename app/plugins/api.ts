@@ -1,6 +1,6 @@
 export default defineNuxtPlugin((nuxtApp) => {
   const api = $fetch.create({
-    baseURL: process.env.ENV_API_BASE_URL,
+    baseURL: useAppConfig().baseUrl.apiurl,
     onRequest({ request, options, error }) {
       // console.log('onRequest', request, options, error)
       // TODO: add auth part
