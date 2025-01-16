@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   ],
 
   // SSR 配置
-  ssr: false,
+  ssr: true,
 
   // auto import 配置
   imports: {
@@ -43,7 +43,7 @@ export default defineNuxtConfig({
 
   router: {
     options: {
-      hashMode: true,
+      hashMode: false,
     },
   },
 
